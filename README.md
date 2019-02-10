@@ -16,7 +16,7 @@ Syntax-Directed Translation for Javac: Modified Javac to compile a new language 
     * The parser internally calls the [Scanner](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/scanner/Scanner.java) which generates a token stream
 1. When the AST is ready, we start run through it and execute the grammar-defined rules.
     * The grammar can define an arbitrary amount of parses, but we have two: `prep0` to prepare everything and `gen` which uses [Gen](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmcompiler/Gen.java) for code generation
-1. The CMMGrammar is only 720 lines long. Our modification to the Javac parser then takes that and then converts it into a regular Java class before letting the Javac code generator worry about the rest.
+1. The CMMGrammar is only 720 lines long. Our modification to the Javac parser then takes that and converts it into a regular Java class before letting the Javac code generator worry about the rest.
     * You find that [the emitted Java class](https://github.com/Domiii/sdt-for-javac/blob/master/project/cmmsrc/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) has over 5000 lines.
 
 You can find the initial proposal and 2011 [final report](https://github.com/Domiii/sdt-for-javac/blob/master/project/report.pdf) [in this folder](https://github.com/Domiii/sdt-for-javac/tree/master/project).

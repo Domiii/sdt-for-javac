@@ -1,0 +1,44 @@
+2506,2509d2505
+< 
+< // Domi edit:
+<         Name methName = TreeInfo.name(tree.meth);
+< 
+2511,2524c2507,2509
+<         if (meth.name==names.init) {
+<             if (allowEnums &&   // allowEnums is false even if enums are allowed
+<                     meth.owner == syms.enumSym) {
+<                 argtypes = argtypes.tail.tail;
+<             }
+<             else {
+<                 // remove name and ordinal parameters from nested enum ctor calls, 
+< 				// because they have not been added to the argument list yet, and do not require boxing anyway
+<                 Symbol constructor = accessConstructor(tree.pos(), meth);
+<                 ClassSymbol c = (ClassSymbol)constructor.owner;
+<                 if ((c.flags_field&ENUM) != 0 || c.getQualifiedName() == names.java_lang_Enum) {
+<                     int argCount = tree.args.size() + (tree.varargsElement != null ? 1 : 0);
+<                     if (argCount == argtypes.size() - 2) {
+< 						// only remove parameter info if argument count does not match parameter count
+---
+>         if (allowEnums &&
+>             meth.name==names.init &&
+>             meth.owner == syms.enumSym)
+2526,2529d2510
+<                     }
+<                 }
+<             }
+<         }
+2532c2513
+< 
+---
+>         Name methName = TreeInfo.name(tree.meth);
+2604,2607d2584
+< // Domi edit:
+<         if (varargsElement == null && parameters.length() != args.length()) {
+<             throw new AssertionError(args);
+<         }
+2630,2632c2607
+<             if (args.length() != 1) {
+<                 throw new AssertionError(args);
+<             }
+---
+>             if (args.length() != 1) throw new AssertionError(args);

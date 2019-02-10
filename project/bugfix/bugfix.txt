@@ -1,0 +1,26 @@
+Bug in OpenJDK from 28/02:
+- I downloaded the latest OpenJDK version from http://download.java.net/openjdk/jdk6/
+	- Located at: http://download.java.net/openjdk/jdk6/promoted/b22/openjdk-6-src-b22-28_feb_2011.tar.gz
+	- Checksums: http://download.java.net/openjdk/jdk6/promoted/b22/openjdk-6-src-b22-28_feb_2011.md5
+
+- After quite a long time, I found the javac source code and imported the langtools/javac/ into my IntelliJ IDEA IDE
+- I compiled it
+- Used it to compile some simple HelloWorld classes
+	-> Worked
+- Used it to compile itself 
+	-> Throw NullPointerException in Lower.cs
+	-> It turns out that Enums cannot compile anymore
+
+
+- The Lower class is used to add statements that are assumed to be present by the programmer, to keep the code shorter and more consistent
+- Enums are one of many things that need quite a bit of extra code, emitted
+- The problem was caused by enum ctors:
+	- The Lower class adds 2 additional parameters and arguments to every ctor definition and invocation: The name and ordinal of each enum member
+	- Those arguments are then passed to any super(...) or this(...) call of all enums in order to, eventually, invoke the Enum(String, int) ctor
+	- The Lower class visits the super(...) and this(...) invocations in the Lower.visitApply() method
+	- It tried to box arguments of the invocation in the Lower.boxArgs method 
+	- The underlying ctors already have the parameters but the name and ordinal arguments have not been added to the invocation yet (they are added just a little bit later)
+	- Lower.boxArgs(...) iterates over all parameters of the method/ctor and assumes the invocation to have at least as many arguments, without verification
+	- But since their are less arguments than parameters, the boxArgs method tries to read beyond the end of the argument list and throws a NullPointerException
+
+- I fixed it by removing the two artifical parameters from the list of parameters given to the boxArgs method, since they don't require any boxing

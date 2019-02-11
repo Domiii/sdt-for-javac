@@ -2,11 +2,11 @@
 Syntax-Directed Translation for Javac: Modified Javac to compile a new language (C-Minus-Minus).
 
 ## Main Points
-* This is a project to write modify Javac for building a compiler-compiler using [SDT](https://www.google.com/search?safe=off&rlz=&q=syntax+directed+translation).
-* I modified Javac v6 to allow defining a Syntax-Directed Definition (a grammar construct with production rules), and then a fully working compiler using that grammar.
+* In this project I modified Javac (`openjdk-6-src-b22-28_feb_2011`) for building a compiler-compiler using [Syntax-Directed Translation (SDT)](https://www.google.com/search?safe=off&rlz=&q=syntax+directed+translation).
+* I added a new construct to the Javac parser called `grammar`, representing a full-fledged Syntax-Directed Definition which maps a [CFG](https://en.wikipedia.org/wiki/Context-free_grammar) to its production rules
   * You can find the new `grammar` construct [here in the javac source code](https://github.com/Domiii/sdt-for-javac/tree/master/javac/com/sun/tools/javac/parser/grammar)
-* I then used that grammar to build a compiler for a simple language called C-Minus-Minus [[source](https://github.com/Domiii/sdt-for-javac/tree/master/compiler/src/edu/ntu/compilers/lab4)]
-* I even [patched a bug](https://github.com/Domiii/sdt-for-javac/blob/master/project/bugfix/bugfix.txt) in Javac that was in that build (`openjdk-6-src-b22-28_feb_2011`) [[official download link](http://download.java.net/openjdk/jdk6/promoted/b22/openjdk-6-src-b22-28_feb_2011.tar.gz)]
+* I then used that `grammar` to build a compiler for a simple language called C-Minus-Minus (short: CMM) [[source](https://github.com/Domiii/sdt-for-javac/tree/master/compiler/src/edu/ntu/compilers/lab4)]
+* I even [patched a bug](https://github.com/Domiii/sdt-for-javac/blob/master/project/bugfix/bugfix.txt) in Javac (enum parsing was broken) that was in that build (`openjdk-6-src-b22-28_feb_2011`) [[official download link](http://download.java.net/openjdk/jdk6/promoted/b22/openjdk-6-src-b22-28_feb_2011.tar.gz)]
 * The CMM language is defined in [this Grammar construct](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java).
     * NOTE: This file does not contain a `class`. You see this right: It defines a `public grammar CMMGrammar` 😊
 

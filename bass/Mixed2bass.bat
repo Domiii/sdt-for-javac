@@ -1,0 +1,1 @@
+java -jar soprano.jar lab4/Mixed.class

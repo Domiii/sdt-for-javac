@@ -1,0 +1,302 @@
+.package edu.ntu.compilers.lab3
+
+.import java.io.*
+.import java.util.*
+
+.class public Mixed
+
+.field static Scanner stdin
+
+.method public void <init>()
+	aload #0
+	invokespecial void <init>() @ Object
+	return
+
+.method public static void calls()
+	new Scanner
+	dup
+	getstatic InputStream in @ System
+	invokespecial void <init>(InputStream) @ Scanner
+	putstatic Scanner stdin
+	getstatic Scanner stdin
+	invokevirtual int nextInt() @ Scanner
+	istore #0
+	getstatic PrintStream out @ System
+	iload #0
+	invokevirtual void println(int) @ PrintStream
+	return
+
+.method public static void T4B_Logic()
+	invokestatic int nextInt()
+	istore #0
+	ldc 10
+	iload #0
+	if_icmpgt L35
+	iload #0
+	ldc 20
+	if_icmpgt L35
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 1
+	ldc " is between 10 and 20"
+	aastore
+	invokestatic void println(Object[])
+L35:
+	ldc 10
+	iload #0
+	if_icmpgt L47
+	iload #0
+	ldc 20
+	if_icmple L66
+L47:
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 1
+	ldc " is not between 10 and 20"
+	aastore
+	invokestatic void println(Object[])
+L66:
+	ldc 10
+	iload #0
+	if_icmpgt L78
+	iload #0
+	ldc 20
+	if_icmple L97
+L78:
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 1
+	ldc " is not between 10 and 20"
+	aastore
+	invokestatic void println(Object[])
+L97:
+	return
+
+.method public static void T2C_Assignment()
+	ldc 123
+	istore #0
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	ldc "First number is: "
+	aastore
+	dup
+	ldc 1
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	invokestatic void println(Object[])
+	ldc -123
+	istore #0
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	ldc "Second number is: "
+	aastore
+	dup
+	ldc 1
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	invokestatic void println(Object[])
+	ldc 123
+	istore #0
+	ldc 2
+	anewarray Object
+	dup
+	ldc 0
+	ldc "Third number is: "
+	aastore
+	dup
+	ldc 1
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	invokestatic void println(Object[])
+	return
+
+.method public static void T5C_MulTable()
+	ldc 1
+	istore #0
+L2:
+	iload #0
+	ldc 10
+	if_icmpge L108
+	ldc 1
+	istore #1
+L10:
+	iload #1
+	ldc 10
+	if_icmpge L89
+	iload #0
+	iload #1
+	imul
+	istore #2
+	ldc 6
+	anewarray Object
+	dup
+	ldc 0
+	ldc " "
+	aastore
+	dup
+	ldc 1
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 2
+	ldc "*"
+	aastore
+	dup
+	ldc 3
+	iload #1
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 4
+	ldc "="
+	aastore
+	dup
+	ldc 5
+	iload #2
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	invokestatic void print(Object[])
+	iload #2
+	ldc 10
+	if_icmpge L82
+	ldc 1
+	anewarray Object
+	dup
+	ldc 0
+	ldc " "
+	aastore
+	invokestatic void print(Object[])
+L82:
+	iload #1
+	ldc 1
+	iadd
+	istore #1
+	goto L10
+L89:
+	ldc 1
+	anewarray Object
+	dup
+	ldc 0
+	ldc ""
+	aastore
+	invokestatic void println(Object[])
+	iload #0
+	ldc 1
+	iadd
+	istore #0
+	goto L2
+L108:
+	ldc 1
+	istore #0
+L110:
+	iload #0
+	ldc 10
+	if_icmpge L215
+	ldc 1
+	istore #1
+L118:
+	iload #1
+	iload #0
+	if_icmpgt L196
+	iload #0
+	iload #1
+	imul
+	istore #2
+	ldc 6
+	anewarray Object
+	dup
+	ldc 0
+	ldc " "
+	aastore
+	dup
+	ldc 1
+	iload #0
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 2
+	ldc "*"
+	aastore
+	dup
+	ldc 3
+	iload #1
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	dup
+	ldc 4
+	ldc "="
+	aastore
+	dup
+	ldc 5
+	iload #2
+	invokestatic Integer valueOf(int) @ Integer
+	aastore
+	invokestatic void print(Object[])
+	iload #2
+	ldc 10
+	if_icmpge L189
+	ldc 1
+	anewarray Object
+	dup
+	ldc 0
+	ldc " "
+	aastore
+	invokestatic void print(Object[])
+L189:
+	iload #1
+	ldc 1
+	iadd
+	istore #1
+	goto L118
+L196:
+	ldc 1
+	anewarray Object
+	dup
+	ldc 0
+	ldc ""
+	aastore
+	invokestatic void println(Object[])
+	iload #0
+	ldc 1
+	iadd
+	istore #0
+	goto L110
+L215:
+	return
+
+.method static void print(Object[])
+	return
+
+.method static void println(Object[])
+	return
+
+.method static int nextInt()
+	ldc 0
+	ireturn
+

@@ -12,14 +12,14 @@ Syntax-Directed Translation for Javac: Modified Javac to compile a new language 
 
 
 ## Compiler Steps
-1. The [CMMCompiler](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmcompiler/CMMCompiler.java) uses the [CMMGrammar](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) to compile everything in a few simple steps.
+The [CMMCompiler](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmcompiler/CMMCompiler.java) uses the [CMMGrammar](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) to compile everything in a few simple steps.
 1. The [CMMParser](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/parser/CMMParser.java#L103) builds the AST, based on the Grammar rules
     * The parser internally calls the [Scanner](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/scanner/Scanner.java) which generates a token stream
-1. When the AST is ready, we start run through it and execute the grammar-defined rules.
-    * The grammar can define an arbitrary amount of parses, but we have two: `prep0` to prepare everything and `gen` which uses [Gen](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmcompiler/Gen.java) for code generation
-1. The CMMGrammar is only 720 lines long. Our modification to the Javac parser then takes that and converts it into a regular Java class before letting the Javac code generator worry about the rest.
-    * You find that [the emitted Java class](https://github.com/Domiii/sdt-for-javac/blob/master/project/cmmsrc/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) has over 5000 lines.
-1. I then used this compiler to actually compile 40 sample CMM programs, which sadly I cannot find anymore.
+1. When the AST is ready, we start running through it and execute the grammar-defined rules.
+    * The `grammar` can define an arbitrary amount of `grammarpasses`, and [the CMMGrammar](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) defines two, each with their own production rules (code to be executed when matching the lefthand-side patterns in the AST): `prep0` to prepare everything and `gen` to generate code (using [the Gen class](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmcompiler/Gen.java))
+1. The CMMGrammar is only 724 lines long (including comments!). Our modification to the Javac parser then takes that and converts it into a regular Java class before letting the Javac code generator worry about the rest.
+    * NOTE: You find that [the equivalent `CMMGrammar` class](https://github.com/Domiii/sdt-for-javac/blob/master/project/cmmsrc/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java) emitted by our modified Javac has over 5000 lines, that's almost 7 times as many lines, and does contain any comments!
+1. I then used this compiler to successfully compile [these 7 sample CMM programs](https://github.com/Domiii/sdt-for-javac/tree/master/cmm_samples) to [BASS assembly code](https://github.com/Domiii/sdt-for-javac/tree/master/bass)
 
 You can find the initial proposal and 2011 [final report](https://github.com/Domiii/sdt-for-javac/blob/master/project/report.pdf) [in this folder](https://github.com/Domiii/sdt-for-javac/tree/master/project).
 NOTE: The report was not very well written (I loved coding those thousands of lines, but report writing I did not enjoy back then...)

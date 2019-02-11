@@ -7,8 +7,8 @@ Syntax-Directed Translation for Javac: Modified Javac to compile a new language 
   * You can find the new `grammar` construct [here in the javac source code](https://github.com/Domiii/sdt-for-javac/tree/master/javac/com/sun/tools/javac/parser/grammar)
 * I then used that `grammar` to build a compiler for a simple language called C-Minus-Minus (short: CMM) [[CMM specs pdf](https://github.com/Domiii/sdt-for-javac/blob/master/cmm_def.pdf)] [[CMM samples](https://github.com/Domiii/sdt-for-javac/tree/master/cmm_samples)] [[my CMM compiler source code](https://github.com/Domiii/sdt-for-javac/tree/master/compiler/src/edu/ntu/compilers/lab4)] and convert it to a proprietary assembly language called `BASS` ([BASS documentation + examples](https://github.com/Domiii/sdt-for-javac/tree/master/bass)).
 * I even [patched a bug](https://github.com/Domiii/sdt-for-javac/blob/master/project/bugfix/bugfix.txt) in Javac (enum parsing was broken) that was in that build (`openjdk-6-src-b22-28_feb_2011`) [[official download link](http://download.java.net/openjdk/jdk6/promoted/b22/openjdk-6-src-b22-28_feb_2011.tar.gz)]
-* The CMM language is defined in [this Grammar construct](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java).
-    * NOTE: This file does not contain a `class`. You see this right: It defines a `public grammar CMMGrammar` 😊
+* Within my CMM compiler, the language is defined in [the CMMGrammar](https://github.com/Domiii/sdt-for-javac/blob/master/compiler/src/edu/ntu/compilers/lab4/cmmgrammar/CMMGrammar.java).
+    * NOTE: You see this right - This `.java` file does not contain a `class`, `interface` etc... but instead it defines a `public grammar CMMGrammar` - That is why I had to make modifications to Javac! 😊
 
 
 ## Compiler Steps
